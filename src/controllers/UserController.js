@@ -5,7 +5,7 @@ module.exports = {
 
         const user = await User.create({
             name: name,
-            email: name
+            email: email
         });
         return res.status(200).json(user);
     },
@@ -30,6 +30,25 @@ module.exports = {
                 er: 'erro ao excluir o id ' + req.params.id
             })
         }
+    },
+    async update(req, res) {
+        const {user_id} = req.params;
+        const {nome, email} = req.body;
+
+        const user = await User.findByPk(user_id);
+        if (!user) {
+            return res.status(400).send({msg: " User not found"});
+        }
+        const user_update = await User.update({
+                nome,
+                email
+            }, {
+                where: {
+                    id: user_id
+                }
+            }
+        );
+        return res.status(200).send(user_update);
     }
 
 }
