@@ -38,5 +38,16 @@ module.exports = {
             valor
         })
         return res.status(201).json(conta);
-    }
+    },
+	async delete (req, res){
+		const {id } = req.params;
+		const pagamento = await Pagamento.destroy({
+			where: {
+				id
+			}
+		});
+		return res.status(200).json(pagamento);
+		
+		
+	}
 }

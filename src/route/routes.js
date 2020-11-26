@@ -19,10 +19,6 @@ routes.use(rotasUsuarios);
 
 
 
-
-routes.post('/users/:user_id/addresses', AddresController.store);
-routes.get('/users/:user_id/addresses', AddresController.list);
-
 /*
 * Receitas
 */
@@ -35,6 +31,7 @@ routes.post('/users/:user_id/receitas', ReceitaController.create);
 */
 routes.get('/contas', PagamentoController.list);
 routes.post('/contas', PagamentoController.create);
+routes.delete('/contas/delete/:id', PagamentoController.delete);
 routes.get('/contas/:conta_id/parcelas', PagamentoController.index);
 
 /*
